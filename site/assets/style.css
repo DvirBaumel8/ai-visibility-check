@@ -31,4 +31,14 @@ input,select{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius
 details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:10px 0}summary{font-weight:700;cursor:pointer}
 footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut);font-size:13px}
 .ph{background:#fef3c7;color:#92400e;border-radius:4px;padding:0 4px}
-@media(max-width:860px){.hero .wrap,.sample{grid-template-columns:1fr}.steps,.prices{grid-template-columns:1fr}h1{font-size:34px}form .row{grid-template-columns:1fr}}
+
+h3.price-head{font-size:20px;margin:28px 0 4px}
+table.sheet{width:100%;border-collapse:collapse;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14.5px}
+table.sheet th,table.sheet td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.sheet th{background:#f8fafc;color:#64748b;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+table.sheet tr:last-child td{border-bottom:0}
+table.sheet .amt{font-weight:800;white-space:nowrap}
+table.sheet .save{color:#059669;font-weight:700}
+.rules{margin:22px 0 0;padding:16px 18px 16px 32px;background:#fff;border:1px solid var(--line);border-radius:14px;color:#334155;font-size:14px}
+.rules li{margin:6px 0}
+@media(max-width:860px){.hero .wrap,.sample{grid-template-columns:1fr}.steps,.prices{grid-template-columns:1fr}h1{font-size:34px}form .row{grid-template-columns:1fr}table.sheet{font-size:13px}table.sheet th,table.sheet td{padding:8px}}
