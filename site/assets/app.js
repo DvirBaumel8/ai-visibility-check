@@ -1,10 +1,26 @@
 (function(){
   const C = window.AIVIS_CONFIG || {};
-  document.querySelectorAll("[data-pay]").forEach(a => {
-    const link = C[a.dataset.pay];
-    if (link) { a.href = link; } else { a.href = "#"; a.addEventListener("click", e => { e.preventDefault();
-      alert("Checkout opens soon. Payment link not connected yet (preview)."); }); }
-  });
+  function wirePay(root){
+    (root || document).querySelectorAll("[data-pay]").forEach(a => {
+      if (a.dataset.payReady) return;
+      a.dataset.payReady = "1";
+      const link = C[a.dataset.pay];
+      if (link) {
+        a.href = link;
+      } else {
+        const email = C.contactEmail || "";
+        a.textContent = "Contact us — coming soon";
+        if (email) {
+          a.href = "mailto:" + email + "?subject=" + encodeURIComponent("Monthly plan — coming soon");
+        } else {
+          a.href = "#";
+          a.addEventListener("click", e => { e.preventDefault();
+            alert("Monthly plans are coming soon. Please contact us."); });
+        }
+      }
+    });
+  }
+  wirePay(document);
   const f = document.getElementById("checkform"); if (!f) return;
   const out = document.getElementById("result");
   f.addEventListener("submit", async e => {
@@ -17,6 +33,7 @@
       const j = await r.json();
       if (!r.ok) throw new Error(j.error || "error");
       out.innerHTML = render(j, data);
+      wirePay(out);
     } catch (err) {
       out.innerHTML = "<b>Preview mode.</b> The free check is not connected on this copy of the site. " +
         "Nothing was sent. <span class='small'>(" + (err.message || err) + ")</span>";
